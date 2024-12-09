@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
 const ModalSensor = ({ isOpen, onClose, onSave, currentValues }) => {
-  const [temperature, setTemperature] = useState(currentValues.temperature);
-  const [humidity, setHumidity] = useState(currentValues.humidity);
+  const [air, setAir] = useState(currentValues.air);
   const [LPG, setLPG] = useState(currentValues.LPG);
-  const [H2S, setH2S] = useState(currentValues.H2S);
+  const [CO, setCO] = useState(currentValues.CO);
 
   const handleSave = () => {
-    onSave({ temperature, humidity, LPG, H2S });
+    onSave({ LPG, CO, air });
     onClose();
   };
 
@@ -22,30 +21,6 @@ const ModalSensor = ({ isOpen, onClose, onSave, currentValues }) => {
         <form className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Temperature (°C)
-            </label>
-            <input
-              type="number"
-              value={temperature}
-              onChange={(e) => setTemperature(e.target.value)}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Humidity (%)
-            </label>
-            <input
-              type="number"
-              value={humidity}
-              onChange={(e) => setHumidity(e.target.value)}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
               LPG Concentration (ppm)
             </label>
             <input
@@ -58,12 +33,24 @@ const ModalSensor = ({ isOpen, onClose, onSave, currentValues }) => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              H2S Concentration (ppm)
+              CO Concentration (ppm)
             </label>
             <input
               type="number"
-              value={H2S}
-              onChange={(e) => setH2S(e.target.value)}
+              value={CO}
+              onChange={(e) => setCO(e.target.value)}
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Air Quality Concentration (ppm)
+            </label>
+            <input
+              type="number"
+              value={air}
+              onChange={(e) => setAir(e.target.value)}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
               required
             />

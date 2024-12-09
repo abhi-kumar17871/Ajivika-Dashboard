@@ -6,7 +6,7 @@ import Speedometer from "../components/Speedometer";
 import GasConcentrationBar from "../components/GasConcentrationBar";
 import { useParams } from "react-router-dom";
 
-const WorkerPage = () => {
+const SensorData = () => {
   const { workerId } = useParams(); // Get the worker ID from the route
   const [currentTemperature, setCurrentTemperature] = useState(null);
   const [pastTemperatures, setPastTemperatures] = useState([]);
@@ -14,10 +14,12 @@ const WorkerPage = () => {
   const [pastHumidity, setPastHumidity] = useState([]);
   const [currentLPG, setCurrentLPG] = useState(null);
   const [pastLPG, setPastLPG] = useState([]);
-  const [currentH2S, setCurrentH2S] = useState(null);
-  const [pastH2S, setPastH2S] = useState([]);
+  const [currentCO, setCurrentCO] = useState(null);
+  const [pastCO, setPastCO] = useState([]);
+  const [currentAir, setCurrentAir] = useState(null);
+  const [pastAir, setPastAir] = useState([]);
   const [dateLabel, setDateLabel] = useState("");
-  const [concentration, setConcentration] = useState(75);
+  const [concentration, setConcentration] = useState();
 
   // Fetch worker-specific data
   useEffect(() => {
@@ -34,8 +36,11 @@ const WorkerPage = () => {
           setPastHumidity(tempArray);
           setCurrentLPG(latestRecord.LPG);
           setPastLPG(tempArray);
-          setCurrentH2S(latestRecord.H2S);
-          setPastH2S(tempArray);
+          setCurrentCO(latestRecord.CO);
+          setPastCO(tempArray);
+          setCurrentAir(latestRecord.air);
+          setPastAir(tempArray);
+          setConcentration(latestRecord.concentration);
 
           const latestTimestamp = latestRecord.timestamp;
           const [date] = latestTimestamp.split(" ");
@@ -75,7 +80,10 @@ const WorkerPage = () => {
             -LPG: {currentLPG} ppm
           </h2>
           <h2 className="pl-10 p-2 border border-black">
-            -Hydrogen Sulphide: {currentH2S} ppm
+            -Air Quality: {currentAir} ppm
+          </h2>
+          <h2 className="pl-10 p-2 border border-black">
+            -CO: {currentCO} ppm
           </h2>
           <div className="pt-10">
             <GasConcentrationBar concentration={concentration} />
@@ -99,9 +107,9 @@ const WorkerPage = () => {
             maxValue={50}
           />
           <Speedometer
-            label="Humidity"
-            value={currentHumidity}
-            maxValue={100}
+            label="Air Quality (ppm)"
+            value={currentAir}
+            maxValue={1000}
           />
           <Speedometer
             label="LPG Conc. (ppm)"
@@ -109,9 +117,9 @@ const WorkerPage = () => {
             maxValue={1000}
           />
           <Speedometer
-            label="Hydrogen Sulphide Conc. (ppm)"
-            value={currentH2S}
-            maxValue={50}
+            label="Carbon Monoxide Conc. (ppm)"
+            value={currentCO}
+            maxValue={1000}
           />
         </div>
       </div>
@@ -127,10 +135,10 @@ const WorkerPage = () => {
         </div>
         <div className="p-2">
           <LineGraph
-            pastValues={pastHumidity}
+            pastValues={pastAir}
             dateLabel={dateLabel}
-            label="Humidity"
-            type="humidity"
+            label="Air Quality (ppm)"
+            type="air"
           />
         </div>
         <div className="p-2">
@@ -143,10 +151,10 @@ const WorkerPage = () => {
         </div>
         <div className="p-2">
           <LineGraph
-            pastValues={pastH2S}
+            pastValues={pastCO}
             dateLabel={dateLabel}
-            label="Hydrogen Sulphide Concentration (ppm)"
-            type="H2S"
+            label="Carbon Monoxide Concentration (ppm)"
+            type="CO"
           />
         </div>
       </div>
@@ -154,4 +162,4 @@ const WorkerPage = () => {
   );
 };
 
-export default WorkerPage;
+export default SensorData;

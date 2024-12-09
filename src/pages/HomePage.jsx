@@ -10,9 +10,9 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [isModalSensorOpen, setIsModalSensorOpen] = useState(false);
   const [isAddNodeModalOpen, setIsAddNodeModalOpen] = useState(false);
-  const [thresholdTemperature, setThresholdTemperature] = useState(0);
-  const [thresholdHumidity, setThresholdHumidity] = useState(0);
   const [LPGThreshold, setLPGThreshold] = useState(0);
+  const [COThreshold, setCOThreshold] = useState(0);
+  const [airThreshold, setAirThreshold] = useState(0);
 
   // Fetch worker nodes from Firebase
   useEffect(() => {
@@ -32,14 +32,14 @@ const HomePage = () => {
   };
 
   const handleSaveModalSensor = (newValues) => {
-    setThresholdTemperature(parseFloat(newValues.temperature));
-    setThresholdHumidity(parseInt(newValues.humidity, 10));
+    setCOThreshold(parseFloat(newValues.CO));
+    setAirThreshold(parseInt(newValues.air));
     setLPGThreshold(parseFloat(newValues.LPG));
 
     const thresholdRef = ref(db, "/global_thresholds/");
     set(thresholdRef, {
-      temperatureThreshold: parseFloat(newValues.temperature),
-      humidityThreshold: parseInt(newValues.humidity, 10),
+      COThreshold: parseFloat(newValues.CO),
+      airThreshold: parseInt(newValues.air),
       LPGThreshold: parseFloat(newValues.LPG),
     });
   };
@@ -62,7 +62,7 @@ const HomePage = () => {
   const handleCloseModalSensor = () => setIsModalSensorOpen(false);
 
   return (
-    <div className="mt-2 pt-10 bg-gray-200 min-h-screen ">
+    <div className="pt-10 bg-gray-200 min-h-screen ">
       <h1 className="text-4xl font-bold text-center mb-6">CONTROL AREA</h1>
       {/* Control Area Section */}
       <div className="flex justify-center">
@@ -105,8 +105,8 @@ const HomePage = () => {
           onClose={handleCloseModalSensor}
           onSave={handleSaveModalSensor}
           currentValues={{
-            temperature: thresholdTemperature || 0,
-            humidity: thresholdHumidity || 0,
+            CO: COThreshold || 0,
+            air: airThreshold || 0,
             LPG: LPGThreshold || 0,
           }}
         />

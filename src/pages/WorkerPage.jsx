@@ -109,17 +109,17 @@ const SensorData = () => {
           <Speedometer
             label="Air Quality "
             value={currentAir}
-            maxValue={1000}
+            maxValue={500}
           />
           <Speedometer
             label="LPG Conc. "
             value={currentLPG}
-            maxValue={1000}
+            maxValue={500}
           />
           <Speedometer
             label="Carbon Monoxide Conc. "
             value={currentCO}
-            maxValue={1000}
+            maxValue={200}
           />
         </div>
       </div>

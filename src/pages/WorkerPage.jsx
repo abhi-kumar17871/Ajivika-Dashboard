@@ -77,13 +77,13 @@ const SensorData = () => {
           </h2>
           <h2 className="p-2 border border-black">Gas Concentration:</h2>
           <h2 className="pl-10 p-2 border border-black">
-            -LPG: {currentLPG} ppm
+            -LPG: {currentLPG} 
           </h2>
           <h2 className="pl-10 p-2 border border-black">
-            -Air Quality: {currentAir} ppm
+            -Air Quality: {currentAir} 
           </h2>
           <h2 className="pl-10 p-2 border border-black">
-            -CO: {currentCO} ppm
+            -CO: {currentCO} 
           </h2>
           <div className="pt-10">
             <GasConcentrationBar concentration={concentration} />
@@ -107,17 +107,17 @@ const SensorData = () => {
             maxValue={50}
           />
           <Speedometer
-            label="Air Quality (ppm)"
+            label="Air Quality "
             value={currentAir}
             maxValue={1000}
           />
           <Speedometer
-            label="LPG Conc. (ppm)"
+            label="LPG Conc. "
             value={currentLPG}
             maxValue={1000}
           />
           <Speedometer
-            label="Carbon Monoxide Conc. (ppm)"
+            label="Carbon Monoxide Conc. "
             value={currentCO}
             maxValue={1000}
           />
@@ -137,7 +137,7 @@ const SensorData = () => {
           <LineGraph
             pastValues={pastAir}
             dateLabel={dateLabel}
-            label="Air Quality (ppm)"
+            label="Air Quality "
             type="air"
           />
         </div>
@@ -145,7 +145,7 @@ const SensorData = () => {
           <LineGraph
             pastValues={pastLPG}
             dateLabel={dateLabel}
-            label="LPG Concentration (ppm)"
+            label="LPG Concentration "
             type="LPG"
           />
         </div>
@@ -153,7 +153,7 @@ const SensorData = () => {
           <LineGraph
             pastValues={pastCO}
             dateLabel={dateLabel}
-            label="Carbon Monoxide Concentration (ppm)"
+            label="Carbon Monoxide Concentration "
             type="CO"
           />
         </div>

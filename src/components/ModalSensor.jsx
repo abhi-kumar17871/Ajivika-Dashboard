@@ -21,7 +21,7 @@ const ModalSensor = ({ isOpen, onClose, onSave, currentValues }) => {
         <form className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              LPG Concentration (ppm)
+              LPG Concentration 
             </label>
             <input
               type="number"
@@ -33,7 +33,7 @@ const ModalSensor = ({ isOpen, onClose, onSave, currentValues }) => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              CO Concentration (ppm)
+              CO Concentration 
             </label>
             <input
               type="number"
@@ -45,7 +45,7 @@ const ModalSensor = ({ isOpen, onClose, onSave, currentValues }) => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Air Quality Concentration (ppm)
+              Air Quality Concentration 
             </label>
             <input
               type="number"

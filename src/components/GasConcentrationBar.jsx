@@ -23,11 +23,11 @@ const GasConcentrationBar = ({ concentration }) => {
         {/* Labels for Good, Bad, Lethal */}
         <div className="absolute top-0 left-0 w-full h-full flex justify-between text-sm font-bold text-gray-700">
           <div>|</div>
-          <div className="w-1/2 flex justify-center">Good</div>
+          <div className="w-1/2 flex justify-center">Normal</div>
           <div>|</div>
-          <div className="w-1/4 flex justify-center">Bad</div>
+          <div className="w-1/4 flex justify-center">Moderate</div>
           <div>|</div>
-          <div className="w-1/4 flex justify-center">Lethal</div>
+          <div className="w-1/4 flex justify-center">Toxic</div>
           <div>|</div>
         </div>
       </div>

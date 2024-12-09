@@ -40,11 +40,12 @@ const SensorData = () => {
           setPastCO(tempArray);
           setCurrentAir(latestRecord.air);
           setPastAir(tempArray);
-          setConcentration(latestRecord.concentration);
-
           const latestTimestamp = latestRecord.timestamp;
           const [date] = latestTimestamp.split(" ");
           setDateLabel(date);
+          const value = (currentLPG + currentAir) / 6;
+          console.log(value);
+          setConcentration(value);
         }
       });
     }
@@ -65,7 +66,9 @@ const SensorData = () => {
     <div>
       <div className="grid md:grid-cols-2 pt-10 grid-cols-1 font-semibold text-2xl">
         <div className="p-14">
-          <div className="flex justify-center p-5 font-bold text-3xl border border-black">Worker Detail of: {workerId}</div>
+          <div className="flex justify-center p-5 font-bold text-3xl border border-black">
+            Worker Detail of: {workerId}
+          </div>
           <div className="flex justify-center p-5 font-bold text-3xl border border-black">
             Current Concentration
           </div>
@@ -76,15 +79,11 @@ const SensorData = () => {
             Humidity: {currentHumidity} %
           </h2>
           <h2 className="p-2 border border-black">Gas Concentration:</h2>
+          <h2 className="pl-10 p-2 border border-black">-LPG: {currentLPG}</h2>
           <h2 className="pl-10 p-2 border border-black">
-            -LPG: {currentLPG} 
+            -Air Quality: {currentAir}
           </h2>
-          <h2 className="pl-10 p-2 border border-black">
-            -Air Quality: {currentAir} 
-          </h2>
-          <h2 className="pl-10 p-2 border border-black">
-            -CO: {currentCO} 
-          </h2>
+          <h2 className="pl-10 p-2 border border-black">-CO: {currentCO}</h2>
           <div className="pt-10">
             <GasConcentrationBar concentration={concentration} />
           </div>
@@ -106,16 +105,8 @@ const SensorData = () => {
             value={currentTemperature}
             maxValue={50}
           />
-          <Speedometer
-            label="Air Quality "
-            value={currentAir}
-            maxValue={500}
-          />
-          <Speedometer
-            label="LPG Conc. "
-            value={currentLPG}
-            maxValue={500}
-          />
+          <Speedometer label="Air Quality " value={currentAir} maxValue={500} />
+          <Speedometer label="LPG Conc. " value={currentLPG} maxValue={500} />
           <Speedometer
             label="Carbon Monoxide Conc. "
             value={currentCO}

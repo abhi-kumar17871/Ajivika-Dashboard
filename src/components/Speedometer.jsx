@@ -6,7 +6,7 @@ const Speedometer = ({ value, label, maxValue }) => {
     <div>
       <ReactSpeedometer 
         maxValue={maxValue}  // Adjust according to your sensor range
-        value={ value || 0}  // Default to 0 if no value
+        value={ value>maxValue?maxValue:value}  // Default to 0 if no value
         currentValueText={label}
         needleColor="red"
         startColor="green"

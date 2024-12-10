@@ -43,9 +43,7 @@ const SensorData = () => {
           const latestTimestamp = latestRecord.timestamp;
           const [date] = latestTimestamp.split(" ");
           setDateLabel(date);
-          const value = (currentLPG + currentAir) / 6;
-          console.log(value);
-          setConcentration(value);
+          setConcentration(latestRecord.concentration);
         }
       });
     }

@@ -78,12 +78,12 @@ const SensorData = () => {
           <h2 className="p-2 border border-black">
             Humidity: {currentHumidity} %
           </h2>
-          <h2 className="p-2 border border-black">Gas Concentration:</h2>
-          <h2 className="pl-10 p-2 border border-black">-LPG: {currentLPG}</h2>
+          <h2 className="p-2 border border-black">Gas Concentration (relative to clean air)</h2>
+          <h2 className="pl-10 p-2 border border-black"> LPG: {currentLPG}</h2>
           <h2 className="pl-10 p-2 border border-black">
-            -Air Quality: {currentAir}
+            Air Quality: {currentAir}
           </h2>
-          <h2 className="pl-10 p-2 border border-black">-CO: {currentCO}</h2>
+          <h2 className="pl-10 p-2 border border-black">CO: {currentCO}</h2>
           <div className="pt-10">
             <GasConcentrationBar concentration={concentration} />
           </div>

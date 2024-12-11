@@ -90,7 +90,9 @@ const SensorData = () => {
             CO: {currentCO < 500 ? currentCO : 500}
           </h2>
           <div className="pt-10">
-            <GasConcentrationBar concentration={concentration} />
+            <GasConcentrationBar
+              concentration={concentration < 100 ? concentration : 100}
+            />
           </div>
           <div className="pt-10">
             <div className="my-2">
